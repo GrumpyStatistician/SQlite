@@ -1,0 +1,6 @@
+###Access your DB
+Sqlite3 db_name.db
+#### read your csv to table
+ .mode csv table_name
+### import table
+.import C:/User/COMPID/DESKTOP/Sample.csv table_name
