@@ -1,0 +1,15 @@
+###SQLite treats date as string, if the file you're extracting from does not have the appropriate yyyy-mm-dd format, the following may help
+###this includes zeros for padding
+
+case when Length("Date")=9 and SUBSTR("Date",2,1)="/" then SUBSTR("Date",6,4)||"-0"||SUBSTR("Date",1,1)||"-"||SUBSTR("Date",3,2)
+
+     when Length("Date")=9 and SUBSTR("Date",2,1)<>"/" then SUBSTR("Date",6,4)||"-"||SUBSTR("Date",1,2)||"-0"||SUBSTR("Date",4,1)
+     
+     when Length("Date")=8  then SUBSTR("Date",5,4)||"-0"||SUBSTR("Date",1,1)||"-0"||SUBSTR("Date",3,1)
+     
+     when  Length("Date")=10 then SUBSTR("Date",7,4)||"-"||SUBSTR("Date",1,2)||"-"||SUBSTR("Date",4,2)
+     
+     else NULL End
+     
+     
+### It's a bit clunky, but it an be added to a View fairly easily 
